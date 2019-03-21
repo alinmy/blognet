@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Тестовый Блог 4 </title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+      
+   
+   <%= stylesheet_link_tag    'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if user_signed_in? %>
+    <span>Здравствуйте, <%= current_user.username %></span>
+    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+<% else %>
+    <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+<% end %>
+    <%=link_to "Главная страница", home_path %> &nbsp; &nbsp;
+    <%=link_to "Добавления статьи", new_post_path %>
+    <%= yield %>
+  </body>
+</html>
