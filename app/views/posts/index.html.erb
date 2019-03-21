@@ -1,7 +1,15 @@
-
+<% if user_signed_in?%>
+    <span>Здравствуйте! <%=current_user.username %></span>
+    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+<% else %>
+    <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+<% end %>
+    <%=link_to "Главная страница", home_path %> &nbsp; &nbsp;
+    <%=link_to "Добавления статьи", new_post_path %>
+    <%= yield %>
 
 <%if @post.empty? %>
- <h1>Пока нет записей в Блоге+++</h1>
+ <h1>Пока нет записей в Блоге</h1>
   
  <%else %>
 <h1> Все посты Блога </h1>

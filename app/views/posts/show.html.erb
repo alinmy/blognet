@@ -1,3 +1,12 @@
+<% if user_signed_in? %>
+    <span>Здравствуйте, <%= current_user.username %></span>
+    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+<% else %>
+    <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+<% end %>
+    <%=link_to "Главная страница", home_path %> &nbsp; &nbsp;
+    <%=link_to "Добавления статьи", new_post_path %>
+    
 <h3>Пользователь <%=@post.user.username%></h3>
 <h1><%=@post.title %> </h1>
 
@@ -7,6 +16,8 @@
  <%= image_tag @post.image.url(:thumb), class: 'img-show' if @post.image? %>
 </p>	
 <hr>
+
+
 <% if user_signed_in? && @post.user==current_user %>
 <%= link_to "Редактировать", edit_post_path(@post), :class=> 'btn btn-warning' %>
 <%= link_to "Удалить пост", post_path(@post), method: :delete, data: {confirm:"Вы хотите удалить статью  ?"}, :class => 'btn btn-danger'%>
@@ -23,11 +34,9 @@
    <% if user_signed_in? %>
   <%= link_to "Удалить Коммент", post_comment_path(@post, comment), method: :delete, data: { confirm: "Вы хотите удалить?" }, :class => 'btn btn-danger'%>
  <%= link_to "Редактировать комент", edit_post_comment_path(@post, comment), :class=> 'btn btn-warning' %>
-    if 
-   <%else%>
- <h2> ЗАрегайся </h2>
-<% end %>  
- <% end %>
+    
+  <% end %>  
+    <% end %>
   
 
       
