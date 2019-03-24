@@ -2,9 +2,14 @@ class CommentsController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
 	def create
 	@post=Post.find(params[:post_id])	
-	@comments=@post.comments.create(comment_params)
-	redirect_to post_path(@post)
-	end
+	@comment = @post.comments.new(comment_params.merge(user_id: current_user.id))
+  
+  if @comment.save
+   redirect_to post_path(@post)
+  else
+    render :new
+  end
+   end
 	def destroy
   @post = Post.find(params[:post_id])
   @post.comments.find(params[:id]).destroy

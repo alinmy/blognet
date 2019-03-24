@@ -1,4 +1,4 @@
-<% if user_signed_in?  %>
+<% if user_signed_in? && @post.user==current_user %>
     <span>Здравствуйте, <%= current_user.username %></span>
     <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
 <% else %>

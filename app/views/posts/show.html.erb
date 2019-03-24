@@ -28,7 +28,7 @@
      <% end %>
   <% @post.comments.each do |comment| %>
   <div class="alert alert-light">
-       
+       <p>Ник <strong><%=comment.user.username%></strong></p>
    <p><strong><%=comment.username%></strong> <br> <%=comment.body%> <%= image_tag comment.image.url(:thumb), class: 'img-show' if comment.image? %> </p>  
   </div>
    <% if user_signed_in? %>
