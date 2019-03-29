@@ -7,31 +7,35 @@ class CommentsController < ApplicationController
   if @comment.save
    redirect_to post_path(@post)
   else
-    render 'edit'
+    render :edit
   end
    end
 	def destroy
   @post = Post.find(params[:post_id])
+  
   @post.comments.find(params[:id]).destroy
   redirect_to post_path(@post)
 end
 
 def update
 @post = Post.find(params[:post_id])
-@comment = @post.comments.find(params[:id])
 
+@comment = current_user.comments.find(params[:id])
 if (@comment.update(comment_params))
+
 redirect_to post_path(@post)
 else
-render 'edit'
+render :edit
+end 
 end
-end
-
 
   def edit
  @post = Post.find(params[:post_id]) 
   @comment = @post.comments.find(params[:id])
-  end 
+    
+    render :edit
+     
+end
 
 
 	private def comment_params 

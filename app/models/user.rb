@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable,:confirmable, :validatable
          has_many :posts 
-         #has_many :comments
+         has_many :comments
        validates :username, presence: :true, uniqueness: { case_sensitive: false }
 end

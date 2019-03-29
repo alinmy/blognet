@@ -17,19 +17,19 @@ class PostsController < ApplicationController
   	def edit
       @post=Post.find(params[:id])
 
-      #if @post.user==current_user
-  	#else
+      if @post.user==current_user
+  	else
         redirect_to @post
-     #end
+     end
    end
   def create
   	@post=Post.new(post_params)
-    #@post.user_id = current_user.id
-    #if (@post.save)
+    @post.user_id = current_user.id
+    if (@post.save)
   	redirect_to @post
-  #else
-  	render 'new'
-  #end
+  else
+  	render :new
+  end
   end
 
   def update
@@ -38,18 +38,18 @@ class PostsController < ApplicationController
     if (@post.update(post_params))
   	redirect_to @post
   else
-  	render 'edit'
+  	render :edit
   end
    end
 
    def destroy
     @post = Post.find(params[:id]) 
-    #if @post.user==current_user  
+    if @post.user==current_user  
      @post.destroy
     redirect_to posts_path
-  #else
-    #redirect_to @post
-   #end
+  else
+    redirect_to @post
+   end
  end
   
 
