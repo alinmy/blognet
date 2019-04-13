@@ -32,9 +32,9 @@
        <p>Ник <strong><%=comment.user.username%></strong></p>
    <p><strong><%=comment.username%></strong> <br> <%=comment.body%> <%= image_tag comment.image.url(:thumb), class: 'img-show' if comment.image? %> </p>  
   </div>
-   <% if user_signed_in? %>
+   <% if user_signed_in? && comment.user==current_user%>
   <%= link_to "Удалить Коммент", post_comment_path(@post, comment), method: :delete, data: { confirm: "Вы хотите удалить?" }, :class => 'btn btn-danger'%>
- <%= link_to "Редактировать комент", edit_post_comment_path(@post, comment), :class=> 'btn btn-warning' %>
+ <%= link_to "Редактировать комент1", edit_post_comment_path(@post, comment), :class=> 'btn btn-warning' %>
     
   <% end %>  
     <% end %>
