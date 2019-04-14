@@ -45,7 +45,7 @@
 <% if user_signed_in? %>
  <%=form_for([@post, @post.comments.build]) do |f| %>
  <p>
-  Пользователь<br>
+  Заголовок коментария<br>
     <%=f.text_field(:username)%>
  </p>
  
